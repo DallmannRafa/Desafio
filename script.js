@@ -72,7 +72,7 @@ function exibirVagasCadastradas() {
     const listaVagasCadastradas = document.getElementById('vagasCadastradas');
     listaVagasCadastradas.innerHTML = '';
 
-    vagasCadastradas.forEach(vaga => {
+    vagasCadastradas.forEach((vaga, index) => {
         const item = document.createElement('li');
         item.textContent = `Placa: ${vaga.placa}, Nome: ${vaga.nome}, Número da Vaga: ${vaga.numeroVaga}`;
 
@@ -80,8 +80,9 @@ function exibirVagasCadastradas() {
         btnExcluir.textContent = 'Excluir';
         btnExcluir.setAttribute('class', 'btn-excluir');
         btnExcluir.addEventListener('click', () => excluirCadastro(index));
-
         item.appendChild(btnExcluir);
+
+        console.log(index);
 
         listaVagasCadastradas.appendChild(item);
     });
@@ -89,13 +90,13 @@ function exibirVagasCadastradas() {
 
 function excluirCadastro(index) {
     vagasCadastradas.splice(index, 1);
-    exibirVagasDisponiveis();
+    exibirVagasCadastradas();
 }
 
 // Função para exibir vagas disponíveis
 function exibirVagasDisponiveis() {
     const listaVagasDisponiveis = document.getElementById('vagasDisponiveis');
-    listaVagasDisponiveis.innerHTML = '';
+    //listaVagasDisponiveis.innerHTML = '';
 
     const totalVagas = 50;
     const vagasOcupadas = vagasCadastradas.length;
